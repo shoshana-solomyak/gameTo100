@@ -40,3 +40,9 @@
 .read-the-docs {
   color: #888;
 }
+#gameBox{ background-color: darksalmon;
+display: flex;
+height:90%;
+width:90%
+}
+.game{width:90%}
