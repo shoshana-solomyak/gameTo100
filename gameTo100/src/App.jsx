@@ -7,9 +7,8 @@ function App() {
   const [users, setUsers] = useState([]);
   return (
     <>
-      <GameCenter />
-
       <Register users={users} setUsers={setUsers} />
+      <GameCenter users={users} setUsers={setUsers} />
     </>
   );
 }
