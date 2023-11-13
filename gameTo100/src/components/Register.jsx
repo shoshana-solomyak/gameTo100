@@ -4,6 +4,7 @@ function Register({ users, setUsers }) {
     constructor(name, pasword) {
       this.name = name;
       this.pasword = pasword;
+      this.active = false;
     }
   }
   function handelRegister() {

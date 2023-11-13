@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function GameTo100() {
+function GameTo100({ user, users, setusers }) {
   const [num, setNum] = useState(Math.floor(Math.random() * 100));
   const [score, setScore] = useState(0);
   const [won, setWon] = useState("");
@@ -15,9 +15,18 @@ function GameTo100() {
     setWon("");
     setNum(Math.floor(Math.random() * 100));
   }
+  function nextTurn() {
+    setusers((prev) => {
+      const copyUsers = [...prev];
+      const curentUser = copyUsers.shift();
+      copyUsers.push(curentUser);
+      return copyUsers;
+    });
+  }
 
   return (
     <div className="game">
+      name: {user.name}
       {num}
       <p>score : {score}</p>
       <div id="buttons">
@@ -26,6 +35,7 @@ function GameTo100() {
             setNum(num + 1);
             setScore(score + 1);
             checkWin(num + 1);
+            nextTurn();
           }}
         >
           +1
