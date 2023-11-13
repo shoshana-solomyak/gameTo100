@@ -1,9 +1,9 @@
 import GameTo100 from "./GameTo100";
 function GameCenter(users, setUser) {
-  let users = [1, 2, 3];
+  let psers = [1, 2, 3];
   return (
     <div id="gameBox">
-      {users.map((value, key) => (
+      {psers.map((value, key) => (
         <GameTo100 key={key} />
       ))}
     </div>
