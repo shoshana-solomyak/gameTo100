@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function GameTo100() {
+function GameTo100({ user, setUsers }) {
   const [num, setNum] = useState(Math.floor(Math.random() * 100));
   const [score, setScore] = useState(0);
   const [won, setWon] = useState("");
@@ -16,6 +16,8 @@ function GameTo100() {
     setWon("");
     setNum(Math.floor(Math.random() * 100));
   }
+  function quit() {}
+
   function handleClick(action) {
     let newNum;
     if (action === "+") {
@@ -25,7 +27,7 @@ function GameTo100() {
     } else if (action === "*") {
       newNum = num * 2;
     } else if (action === "/") {
-      newNum = num / 2;
+      newNum = Math.floor(num / 2);
     }
     checkWin(newNum);
     setScore(score + 1);
@@ -43,7 +45,7 @@ function GameTo100() {
       </div>
       {won && <p>{won}</p>}
       {won && <button onClick={newGame}>new game</button>}
-      {}
+      {won && <button onClick={quit}>quit</button>}
     </div>
   );
 }
