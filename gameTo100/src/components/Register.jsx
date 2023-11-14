@@ -7,8 +7,8 @@ function Register({ users, setUsers, saveUsers }) {
       this.active = active;
       this.averageScores = 0;
       this.games = 0;
-      this.averagePoint = 0;
-      this.points = 0;
+      this.perfectGames = 0;
+      this.num = 100;
     }
   }
   function handelRegister() {
