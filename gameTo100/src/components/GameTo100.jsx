@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function GameTo100({ user, setUsers }) {
+function GameTo100({ user, setUsers, saveUsers }) {
   const [num, setNum] = useState(Math.floor(Math.random() * 100));
   const [score, setScore] = useState(0);
   const [won, setWon] = useState("");
@@ -9,14 +9,6 @@ function GameTo100({ user, setUsers }) {
   function checkWin(num) {
     if (num === 100) {
       setWon("you won!");
-      //   setMyScores((prevScores) => {
-      //     setAverage(() => {
-      //       let count = 0;
-      //       myScores.forEach((s) => (count += s));
-      //       return myScores.length ? count / myScores.length : count;
-      //     });
-      //     return [...prevScores, score + 1];
-      //   });
       setMyScores((prevScores) => {
         const newScores = [...prevScores, score + 1];
         setAverage(
@@ -59,6 +51,10 @@ function GameTo100({ user, setUsers }) {
     if (user.active) {
       nextTurn();
     }
+    // user.averageScores = average;
+    // user.averagePoint = 100;
+    // user.points += 100;
+    // saveUsers.map(())
     setUsers((prevUsers) => {
       const filteredUsers = prevUsers.filter((u) => u.name !== user.name);
       return filteredUsers;
@@ -96,12 +92,15 @@ function GameTo100({ user, setUsers }) {
       {won ? (
         <>
           {num === 100 && "you won!"}
-          <br></br>
+          <p>average {average}</p>
+          <p>myScores {myScores}</p>
           {won && <button onClick={newGame}>new game</button>}
           {won && <button onClick={() => quit(user)}>quit</button>}
         </>
       ) : (
         <>
+          <p>myScores {myScores}</p>
+          <p>average {average}</p>
           <div id="buttons">
             <button className="gameButton" onClick={() => handleClick("+")}>
               +1

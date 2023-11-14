@@ -5,6 +5,10 @@ function Register({ users, setUsers, saveUsers }) {
       this.name = name;
       this.pasword = pasword;
       this.active = active;
+      this.averageScores = 0;
+      this.games = 0;
+      this.averagePoint = 0;
+      this.points = 0;
     }
   }
   function handelRegister() {

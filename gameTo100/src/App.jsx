@@ -23,7 +23,7 @@ function App() {
   return (
     <>
       {inGame ? (
-        <GameCenter users={users} setUsers={setUsers} />
+        <GameCenter users={users} setUsers={setUsers} saveUsers={saveUsers} />
       ) : (
         <>
           {isLogin ? (
