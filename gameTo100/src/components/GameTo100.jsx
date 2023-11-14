@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function GameTo100({ user, users, setusers }) {
+function GameTo100({ user, setUsers }) {
   const [num, setNum] = useState(Math.floor(Math.random() * 100));
   const [score, setScore] = useState(0);
   const [won, setWon] = useState("");
@@ -9,68 +9,66 @@ function GameTo100({ user, users, setusers }) {
       setWon("you won!");
       return true;
     }
+    return false;
   }
+
+  function nextTurn() {
+    setUsers((prev) => {
+      const copyUsers = [...prev];
+      let i = 0;
+      copyUsers.map((currentUser, index) => {
+        if (currentUser.active) {
+          currentUser.active = false;
+          i = index + 1;
+        }
+        return currentUser;
+      });
+      if (i === copyUsers.length) {
+        i = 0;
+      }
+      copyUsers[i].active = true;
+      return copyUsers;
+    });
+  }
+
   function newGame() {
     setScore(0);
     setWon("");
     setNum(Math.floor(Math.random() * 100));
   }
-  function nextTurn() {
-    setusers((prev) => {
-      const copyUsers = [...prev];
-      const curentUser = copyUsers.shift();
-      copyUsers.push(curentUser);
-      return copyUsers;
-    });
+  function handleClick(action) {
+    if (user.active === false) {
+      return;
+    }
+    let newNum;
+    if (action === "+") {
+      newNum = num + 1;
+    } else if (action === "-") {
+      newNum = num - 1;
+    } else if (action === "*") {
+      newNum = num * 2;
+    } else if (action === "/") {
+      newNum = num / 2;
+    }
+    checkWin(newNum);
+    setScore(score + 1);
+    setNum(newNum);
+    nextTurn();
   }
-
   return (
     <div className="game">
-      name: {user.name}
+      {user.name}
+      <br></br>
       {num}
       <p>score : {score}</p>
       <div id="buttons">
-        <button
-          onClick={() => {
-            setNum(num + 1);
-            setScore(score + 1);
-            checkWin(num + 1);
-            nextTurn();
-          }}
-        >
-          +1
-        </button>
-        <button
-          onClick={() => {
-            setNum(num - 1);
-            setScore(score + 1);
-            checkWin(num - 1);
-          }}
-        >
-          -1
-        </button>
-        <button
-          onClick={() => {
-            setNum(num * 2);
-            setScore(score + 1);
-            checkWin(num * 2);
-          }}
-        >
-          x2
-        </button>
-        <button
-          onClick={() => {
-            setNum(Math.floor(num / 2));
-            setScore(score + 1);
-            checkWin(Math.floor(num / 2));
-          }}
-        >
-          :2
-        </button>
+        <button onClick={() => handleClick("+")}>+1</button>
+        <button onClick={() => handleClick("-")}>-1</button>
+        <button onClick={() => handleClick("*")}>x2</button>
+        <button onClick={() => handleClick("/")}>/2</button>
       </div>
       {won && <p>{won}</p>}
       {won && <button onClick={newGame}>new game</button>}
-      {}
     </div>
   );
 }

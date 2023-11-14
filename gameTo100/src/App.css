@@ -41,11 +41,15 @@
 }
 #gameBox{ background-color: darksalmon;
 display: flex;
-height:90%;
-width:90%;
-margin:auto
+flex-wrap: wrap;
+height:90vh;
+width:90vw;
+margin:auto;
+justify-content: space-between; 
 }
-.game{width:50%;
+.game{
+  max-width: 80%;
+  min-width: 48%;
   border: black solid 1px;
   font-size: 1.5rem;
   padding: 5px;
