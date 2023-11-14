@@ -9,7 +9,6 @@ function GameTo100({ user, setUsers }) {
       setWon("you won!");
       return true;
     }
-    return false;
   }
 
   function nextTurn() {
@@ -36,6 +35,16 @@ function GameTo100({ user, setUsers }) {
     setWon("");
     setNum(Math.floor(Math.random() * 100));
   }
+  function quit(user) {
+    setUsers((prevUsers) => {
+      const filteredUsers = prevUsers.filter((u) => {
+        console.log("user.name: ", user.name);
+        console.log("u.name: ", u.name);
+        return u.name !== user.name;
+      });
+      return filteredUsers;
+    });
+  }
   function handleClick(action) {
     if (user.active === false) {
       return;
@@ -48,13 +57,14 @@ function GameTo100({ user, setUsers }) {
     } else if (action === "*") {
       newNum = num * 2;
     } else if (action === "/") {
-      newNum = num / 2;
+      newNum = Math.floor(num / 2);
     }
     checkWin(newNum);
     setScore(score + 1);
     setNum(newNum);
     nextTurn();
   }
+
   return (
     <div className="game">
       {user.name}
@@ -69,6 +79,7 @@ function GameTo100({ user, setUsers }) {
       </div>
       {won && <p>{won}</p>}
       {won && <button onClick={newGame}>new game</button>}
+      {won && <button onClick={() => quit(user)}>quit</button>}
     </div>
   );
 }

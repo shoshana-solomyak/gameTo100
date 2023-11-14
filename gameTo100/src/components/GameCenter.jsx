@@ -3,7 +3,7 @@ function GameCenter({ users, setUsers }) {
   return (
     <div id="gameBox">
       {users.map((user, key) => (
-        <GameTo100 user={user} users={users} setUsers={setUsers} key={key} />
+        <GameTo100 user={user} setUsers={setUsers} key={key} />
       ))}
     </div>
   );
