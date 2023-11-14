@@ -33,7 +33,7 @@ function Login({ goToSignup, users, setUsers, saveUsers }) {
       saveUsers.push(newUser);
       localStorage.setItem("users", JSON.stringify(saveUsers));
       setUsers(copyUsers);
-      alert("add user secsecfuly");
+      alert("logged in");
     }
 
     console.log("USERS after", users);

@@ -103,10 +103,18 @@ function GameTo100({ user, setUsers }) {
       ) : (
         <>
           <div id="buttons">
-            <button onClick={() => handleClick("+")}>+1</button>
-            <button onClick={() => handleClick("-")}>-1</button>
-            <button onClick={() => handleClick("*")}>x2</button>
-            <button onClick={() => handleClick("/")}>/2</button>
+            <button className="gameButton" onClick={() => handleClick("+")}>
+              +1
+            </button>
+            <button className="gameButton" onClick={() => handleClick("-")}>
+              -1
+            </button>
+            <button className="gameButton" onClick={() => handleClick("*")}>
+              x2
+            </button>
+            <button className="gameButton" onClick={() => handleClick("/")}>
+              /2
+            </button>
           </div>
         </>
       )}

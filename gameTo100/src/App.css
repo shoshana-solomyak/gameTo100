@@ -42,14 +42,14 @@
 #gameBox{ 
 display: flex;
 flex-wrap: wrap;
-height:90vh;
-width:90vw;
+height:100vh;
+width:100vw;
 margin:auto;
 justify-content: space-evenly; 
 }
 .game{
   max-width: 80%;
-  min-width: 48%;
+  min-width: 30%;
   border: black solid 1px;
   font-size: 1.5rem;
   padding: 5px;

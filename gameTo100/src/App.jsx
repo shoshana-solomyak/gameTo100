@@ -16,6 +16,7 @@ function App() {
   }
 
   let saveUsers = JSON.parse(localStorage.getItem("users")) || [];
+
   const [users, setUsers] = useState([]);
 
   const [inGame, setInGame] = useState(false);
