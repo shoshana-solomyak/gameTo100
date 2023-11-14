@@ -13,10 +13,10 @@ function App() {
       {inGame ? (
         <GameCenter users={users} setUsers={setUsers} />
       ) : (
-        <>
+        <div id="signUp">
           <Register users={users} setUsers={setUsers} />{" "}
           <UserList setInGame={setInGame} users={users} />
-        </>
+        </div>
       )}
     </>
   );
