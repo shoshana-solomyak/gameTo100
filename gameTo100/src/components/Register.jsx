@@ -43,6 +43,7 @@ function Register({ users, setUsers, saveUsers }) {
   }
   return (
     <div>
+      <h2>Register</h2>
       <input id="name" type="text" placeholder="user name" />
       <br />
       <input id="pasword" type="text" placeholder="pasword" />

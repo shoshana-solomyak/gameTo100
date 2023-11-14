@@ -55,6 +55,7 @@ function GameTo100({ user, setUsers, saveUsers }) {
     // user.averagePoint = 100;
     // user.points += 100;
     // saveUsers.map(())
+    // user.active = false;
     setUsers((prevUsers) => {
       const filteredUsers = prevUsers.filter((u) => u.name !== user.name);
       return filteredUsers;

@@ -15,29 +15,39 @@ function Login({ goToSignup, users, setUsers, saveUsers }) {
     const paswordDom = document.getElementById("pasword");
     const name = nameDom.value;
     const pasword = paswordDom.value;
+    let loggedIn = false;
     if (name === "" || pasword === "") {
       alert("fill all");
       return;
+    } else {
+      saveUsers.forEach((user) => {
+        if (user.name === name && user.pasword === pasword) {
+          console.log("logged in");
+          loggedIn = true;
+        }
+      });
+    }
+    if (!loggedIn) {
+      console.log("incorrect");
+
+      alert("Incorrect username or password");
     }
     const isExist = saveUsers.filter((user) => user.name === nameDom.value);
-    if (isExist[0]) {
-      alert("the user name alredy exist");
-    } else {
-      const copyUsers = [...users];
-      let active = false;
-      if (copyUsers.length === 0) {
-        active = true;
-      }
-      const newUser = new User(name, pasword, active);
-      copyUsers.push(newUser);
-      saveUsers.push(newUser);
-      localStorage.setItem("users", JSON.stringify(saveUsers));
-      setUsers(copyUsers);
+
+    const copyUsers = [...users];
+    let active = false;
+    if (copyUsers.length === 0) {
+      active = true;
       alert("logged in");
     }
+    const newUser = new User(name, pasword, active);
+    copyUsers.push(newUser);
+    saveUsers.push(newUser);
+    localStorage.setItem("users", JSON.stringify(saveUsers));
+    setUsers(copyUsers);
 
     console.log("USERS after", users);
-    checkLogin();
+
     nameDom.value = "";
     paswordDom.value = "";
   }
