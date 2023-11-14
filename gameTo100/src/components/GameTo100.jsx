@@ -17,11 +17,7 @@ function GameTo100({ user, setUsers }) {
     setWon("");
     setNum(Math.floor(Math.random() * 100));
   }
-  //   function quit(user) {
-  //     setUsers((prevUsers) => prevUsers.filter((u) => u.name != user.name)
-  //     console.log('user.name: ', user.name);
-  //     console.log("u.name: ", u.name))
-  //   }
+
   function quit(user) {
     setUsers((prevUsers) => {
       const filteredUsers = prevUsers.filter((u) => {
