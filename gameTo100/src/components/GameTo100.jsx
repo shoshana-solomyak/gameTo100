@@ -4,14 +4,32 @@ function GameTo100({ user, setUsers }) {
   const [num, setNum] = useState(Math.floor(Math.random() * 100));
   const [score, setScore] = useState(0);
   const [won, setWon] = useState("");
-  //   const [myScores, setMyScores]=useState
   function checkWin(num) {
     if (num === 100) {
       setWon("you won!");
       return true;
     }
-    return false;
   }
+
+  function nextTurn() {
+    setUsers((prev) => {
+      const copyUsers = [...prev];
+      let i = 0;
+      copyUsers.map((currentUser, index) => {
+        if (currentUser.active) {
+          currentUser.active = false;
+          i = index + 1;
+        }
+        return currentUser;
+      });
+      if (i === copyUsers.length) {
+        i = 0;
+      }
+      copyUsers[i].active = true;
+      return copyUsers;
+    });
+  }
+
   function newGame() {
     setScore(0);
     setWon("");
@@ -28,8 +46,10 @@ function GameTo100({ user, setUsers }) {
       return filteredUsers;
     });
   }
-
   function handleClick(action) {
+    if (user.active === false) {
+      return;
+    }
     let newNum;
     if (action === "+") {
       newNum = num + 1;
@@ -43,7 +63,9 @@ function GameTo100({ user, setUsers }) {
     checkWin(newNum);
     setScore(score + 1);
     setNum(newNum);
+    nextTurn();
   }
+
   return (
     <div className="game">
       {user.name}

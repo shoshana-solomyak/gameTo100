@@ -1,10 +1,10 @@
 function Register({ users, setUsers }) {
   console.log("USERS befor", users);
   class User {
-    constructor(name, pasword) {
+    constructor(name, pasword, active) {
       this.name = name;
       this.pasword = pasword;
-      this.active = false;
+      this.active = active;
     }
   }
   function handelRegister() {
@@ -21,8 +21,12 @@ function Register({ users, setUsers }) {
       alert("the user name alredy exist");
     } else {
       setUsers((prev) => {
-        const users = [...prev];
-        return [...users, new User(name, pasword)];
+        const copyUsers = [...prev];
+        let active = false;
+        if (copyUsers.length === 0) {
+          active = true;
+        }
+        return [...copyUsers, new User(name, pasword, active)];
       });
       alert("add user secsecfuly");
     }
