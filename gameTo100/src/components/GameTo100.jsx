@@ -56,6 +56,9 @@ function GameTo100({ user, setUsers }) {
   }
 
   function quit(user) {
+    if (user.active) {
+      nextTurn();
+    }
     setUsers((prevUsers) => {
       const filteredUsers = prevUsers.filter((u) => u.name !== user.name);
       return filteredUsers;
@@ -82,22 +85,31 @@ function GameTo100({ user, setUsers }) {
   }
 
   return (
-    <div className="game">
+    <div
+      className="game"
+      style={{ backgroundColor: user.active ? "darksalmon" : "grey" }}
+    >
       {user.name}
       <br></br>
       {num}
       <p>score : {score}</p>
-      <div id="buttons">
-        <button onClick={() => handleClick("+")}>+1</button>
-        <button onClick={() => handleClick("-")}>-1</button>
-        <button onClick={() => handleClick("*")}>x2</button>
-        <button onClick={() => handleClick("/")}>/2</button>
-      </div>
-      {won && <p>{won}</p>}
-      {won && <button onClick={newGame}>new game</button>}
-      {won && <button onClick={() => quit(user)}>quit</button>}
-      <p>my scores : {myScores.toString()}</p>
-      <p>my average : {average}</p>
+      {won ? (
+        <>
+          {num === 100 && "you won!"}
+          <br></br>
+          {won && <button onClick={newGame}>new game</button>}
+          {won && <button onClick={() => quit(user)}>quit</button>}
+        </>
+      ) : (
+        <>
+          <div id="buttons">
+            <button onClick={() => handleClick("+")}>+1</button>
+            <button onClick={() => handleClick("-")}>-1</button>
+            <button onClick={() => handleClick("*")}>x2</button>
+            <button onClick={() => handleClick("/")}>/2</button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
