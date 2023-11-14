@@ -4,6 +4,7 @@ function GameTo100({ user, setUsers }) {
   const [num, setNum] = useState(Math.floor(Math.random() * 100));
   const [score, setScore] = useState(0);
   const [won, setWon] = useState("");
+  //   const [myScores, setMyScores]=useState
   function checkWin(num) {
     if (num === 100) {
       setWon("you won!");
@@ -16,7 +17,21 @@ function GameTo100({ user, setUsers }) {
     setWon("");
     setNum(Math.floor(Math.random() * 100));
   }
-  function quit() {}
+  //   function quit(user) {
+  //     setUsers((prevUsers) => prevUsers.filter((u) => u.name != user.name)
+  //     console.log('user.name: ', user.name);
+  //     console.log("u.name: ", u.name))
+  //   }
+  function quit(user) {
+    setUsers((prevUsers) => {
+      const filteredUsers = prevUsers.filter((u) => {
+        console.log("user.name: ", user.name);
+        console.log("u.name: ", u.name);
+        return u.name !== user.name;
+      });
+      return filteredUsers;
+    });
+  }
 
   function handleClick(action) {
     let newNum;
@@ -35,6 +50,8 @@ function GameTo100({ user, setUsers }) {
   }
   return (
     <div className="game">
+      {user.name}
+      <br></br>
       {num}
       <p>score : {score}</p>
       <div id="buttons">
@@ -45,7 +62,7 @@ function GameTo100({ user, setUsers }) {
       </div>
       {won && <p>{won}</p>}
       {won && <button onClick={newGame}>new game</button>}
-      {won && <button onClick={quit}>quit</button>}
+      {won && <button onClick={() => quit(user)}>quit</button>}
     </div>
   );
 }
