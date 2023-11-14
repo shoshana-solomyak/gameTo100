@@ -51,11 +51,17 @@ function GameTo100({ user, setUsers, saveUsers }) {
     if (user.active) {
       nextTurn();
     }
-    // user.averageScores = average;
-    // user.averagePoint = 100;
-    // user.points += 100;
-    // saveUsers.map(())
-    // user.active = false;
+    user.averageScores = average;
+    user.averagePoint = 100;
+    user.points += 100;
+    user.active = false;
+    user.games += 1;
+    saveUsers.forEach((currentUser, index) => {
+      if (user.name === currentUser.name) {
+        saveUsers[index] = user;
+      }
+    });
+    localStorage.setItem("users", JSON.stringify(saveUsers));
     setUsers((prevUsers) => {
       const filteredUsers = prevUsers.filter((u) => u.name !== user.name);
       return filteredUsers;
