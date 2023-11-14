@@ -5,9 +5,10 @@ import Register from "./components/Register";
 import UserList from "./components/UserList";
 
 function App() {
-  const [users, setUsers] = useState([]);
-  const [inGame, setInGame] = useState(false);
+  let saveUsers = JSON.parse(localStorage.getItem("users")) || [];
+  const [users, setUsers] = useState(saveUsers);
 
+  const [inGame, setInGame] = useState(false);
   return (
     <>
       {inGame ? (

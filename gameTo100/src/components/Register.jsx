@@ -20,14 +20,15 @@ function Register({ users, setUsers }) {
     if (isExist[0]) {
       alert("the user name alredy exist");
     } else {
-      setUsers((prev) => {
-        const copyUsers = [...prev];
-        let active = false;
-        if (copyUsers.length === 0) {
-          active = true;
-        }
-        return [...copyUsers, new User(name, pasword, active)];
-      });
+      const copyUsers = [...users];
+      let active = false;
+      if (copyUsers.length === 0) {
+        active = true;
+      }
+      const newUser = new User(name, pasword, active);
+      copyUsers.push(newUser);
+      localStorage.setItem("users", JSON.stringify(copyUsers));
+      setUsers(copyUsers);
       alert("add user secsecfuly");
     }
     console.log("USERS after", users);

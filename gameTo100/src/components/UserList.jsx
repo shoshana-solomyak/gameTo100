@@ -9,7 +9,13 @@ function UserList({ users, setInGame }) {
       {users.map((user, key) => (
         <UserProfile key={key} user={user} />
       ))}
-      <button onClick={() => setInGame(true)}>start game</button>
+      <button
+        onClick={() => {
+          setInGame(true);
+        }}
+      >
+        start game
+      </button>
     </div>
   );
 }

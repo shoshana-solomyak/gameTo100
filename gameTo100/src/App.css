@@ -39,13 +39,13 @@
 .read-the-docs {
   color: #888;
 }
-#gameBox{ background-color: darksalmon;
+#gameBox{ 
 display: flex;
 flex-wrap: wrap;
 height:90vh;
 width:90vw;
 margin:auto;
-justify-content: space-between; 
+justify-content: space-evenly; 
 }
 .game{
   max-width: 80%;
