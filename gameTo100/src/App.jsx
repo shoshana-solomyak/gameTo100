@@ -6,7 +6,8 @@ import UserList from "./components/UserList";
 
 function App() {
   let saveUsers = JSON.parse(localStorage.getItem("users")) || [];
-  const [users, setUsers] = useState(saveUsers);
+
+  const [users, setUsers] = useState([]);
 
   const [inGame, setInGame] = useState(false);
   return (
@@ -15,7 +16,7 @@ function App() {
         <GameCenter users={users} setUsers={setUsers} />
       ) : (
         <>
-          <Register users={users} setUsers={setUsers} />{" "}
+          <Register users={users} setUsers={setUsers} saveUsers={saveUsers} />{" "}
           <UserList setInGame={setInGame} users={users} />
         </>
       )}

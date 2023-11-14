@@ -1,4 +1,4 @@
-function Register({ users, setUsers }) {
+function Register({ users, setUsers, saveUsers }) {
   console.log("USERS befor", users);
   class User {
     constructor(name, pasword, active) {
@@ -16,7 +16,7 @@ function Register({ users, setUsers }) {
       alert("fill all");
       return;
     }
-    const isExist = users.filter((user) => user.name === nameDom.value);
+    const isExist = saveUsers.filter((user) => user.name === nameDom.value);
     if (isExist[0]) {
       alert("the user name alredy exist");
     } else {
@@ -27,7 +27,8 @@ function Register({ users, setUsers }) {
       }
       const newUser = new User(name, pasword, active);
       copyUsers.push(newUser);
-      localStorage.setItem("users", JSON.stringify(copyUsers));
+      saveUsers.push(newUser);
+      localStorage.setItem("users", JSON.stringify(saveUsers));
       setUsers(copyUsers);
       alert("add user secsecfuly");
     }
